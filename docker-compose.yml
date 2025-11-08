@@ -34,19 +34,20 @@ services:
       - NET_ADMIN
     restart: always
 
-# Polaris service
-  polaris:
-    container_name: polaris
-    image: registry.gitlab.com/connectical/container/polaris
+# Navidrome service
+navidrome:
+    container_name: navidrome
+    image: deluan/navidrome:latest
+    user: 1000:1000 # should be owner of volumes
     ports:
-      - "5050:5050/tcp"
+      - "4533:4533"
+    restart: unless-stopped
+    #environment:
+      # Optional: put your config options customization here. Examples:
+      # ND_LOGLEVEL: debug
     volumes:
-      # For load music in app
-      - '/mnt/data/music:/music'
-      # For persisting Pi-hole's databases and common configuration file
-      - './container-data/polaris/cache:/var/cache/polaris'
-      - './container-data/polaris/data:/var/lib/polaris'
-    restart: always
+      - "./container-data/navidrome:/data"
+      - "/mnt/data/music:/music:ro"
 
 # Honeygain service
   honeygain:

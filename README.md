@@ -1,8 +1,7 @@
 # Docker Compose pour auto-hébergement sur Raspberry Pi 4
 ## Services
-- Pi-hole
 - Honeygain
-- Polaris
+- Navidrome
 - Miniflux
 
 ## Utilisation
